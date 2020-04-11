@@ -1,0 +1,66 @@
+:global(.toggle) {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 2;
+  outline: none;
+}
+
+:global(.toggle:hover) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+:global(.toggle:hover::before) {
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+:global(.toggle::before) {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(45deg);
+  height: 6px;
+  width: 6px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  transition: 0.3s ease-in-out;
+}
+
+:global(.open::before) {
+  top: 54%;
+  transform: translate(-50%, -50%) rotateZ(-135deg);
+}
+
+:global(.up) {
+  top: -35px;
+}
+
+.wrp {
+  height: 100%;
+  padding: 14px;
+}
+
+.container {
+  transition: 0.3s ease-in-out;
+}
+
+.contacts {
+  position: relative;
+}
+
+.title {
+  position: relative;
+  left: 0;
+  margin: 6px 0;
+  font-size: 1.4rem;
+  transition: 500ms ease-in-out;
+}
