@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import styles from '../contact-form/ContactForm.module.css';
 import stylesFilter from './Filter.module.css';
 
 interface Props {
-  value: string;
-  onFilterChanges(value: string): void;
+  filter: string;
+  onFilterChanges(filter: string): void;
 }
 
-const Filter: React.FC<Props> = ({ value, onFilterChanges }) => (
+const Filter: React.FC<Props> = ({ filter, onFilterChanges }) => (
   <label>
     <span className="subtitle">Find contacts by name</span>
     <div className={stylesFilter.wrp}>
@@ -15,7 +15,9 @@ const Filter: React.FC<Props> = ({ value, onFilterChanges }) => (
         className={styles.input}
         type="input"
         name="filter"
-        onChange={() => onFilterChanges(value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          onFilterChanges(event.currentTarget.value)
+        }
         autoComplete="off"
       />
     </div>

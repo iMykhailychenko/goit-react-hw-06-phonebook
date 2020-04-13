@@ -21,7 +21,7 @@ export const contactsReducer = (
 ): IContact[] => {
   switch (action.type) {
     case ADD_CONTACT:
-      const newContactsList: IContact[] = [action.payload, ...contacts];
+      const newContactsList: IContact[] = [{ ...action.payload }, ...contacts];
       setDataToLocalStorage('contacts', newContactsList);
       return newContactsList;
 

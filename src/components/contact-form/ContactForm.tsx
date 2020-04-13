@@ -1,12 +1,20 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import styles from './ContactForm.module.css';
+import { IContact } from '../../types';
 
 const validName: RegExp = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 const validNumber: RegExp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 
 interface Props {
-  onAddedContact(name: string, number: string): void;
+  contacts: IContact[];
+  alert: boolean;
+  handleAddedContact(
+    name: string,
+    number: string,
+    contacts: IContact[],
+    alert: boolean,
+  ): void;
 }
 
 interface Values {
@@ -14,7 +22,11 @@ interface Values {
   number?: string;
 }
 
-const ContactForm: React.FC<Props> = ({ onAddedContact }) => {
+const ContactForm: React.FC<Props> = ({
+  contacts,
+  alert,
+  handleAddedContact,
+}) => {
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
@@ -24,10 +36,11 @@ const ContactForm: React.FC<Props> = ({ onAddedContact }) => {
         if (!values.number) errors.number = 'This is required field';
         if (!validName.test(values.name!)) errors.name = 'Invalid name';
         if (!validNumber.test(values.number!)) errors.number = 'Invalid number';
-
         return errors;
       }}
-      onSubmit={values => onAddedContact(values.name, values.number)}
+      onSubmit={values =>
+        handleAddedContact(values.name, values.number, contacts, alert)
+      }
     >
       {() => (
         <Form>

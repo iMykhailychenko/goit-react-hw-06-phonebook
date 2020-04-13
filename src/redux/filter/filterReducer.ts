@@ -6,7 +6,7 @@ export const filterReducer = (
 ): string => {
   switch (action.type) {
     case FILTER:
-      return filter;
+      return action.payload;
 
     default:
       return filter;

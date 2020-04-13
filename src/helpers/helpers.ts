@@ -1,6 +1,6 @@
 import { IContact } from '../types';
 
-const defaultValue: IContact[] = [
+export const defaultValue: IContact[] = [
   { id: 'id-1', name: 'Rosie Simpson', number: '380444591256' },
   { id: 'id-2', name: 'Rosie Simpson', number: '380444591256' },
   { id: 'id-3', name: 'Hermione Kline', number: '380444438912' },
@@ -11,10 +11,13 @@ const defaultValue: IContact[] = [
   { id: 'id-8', name: 'Hermione Kline', number: '380444438912' },
 ];
 
-const filterTasks = (contacts: IContact[], filter: string) => {
+export const filterTasks = (contacts: IContact[], filter: string) => {
   return contacts.filter(item => {
     return item.name.toLowerCase().includes(filter.toLowerCase());
   });
 };
 
-export { defaultValue, filterTasks };
+export const detectDuplicate = (value: string, contacts: IContact[]): boolean => {
+  const isDuplicate = contacts.some(item => item.number === value);
+  return isDuplicate;
+}

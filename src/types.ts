@@ -2,17 +2,19 @@ export const ADD_CONTACT = 'ADD_CONTACT';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const FILTER = 'FILTER';
 export const TOGGLE_ELEM = 'TOGGLE_ELEM';
+export const ALERT = 'ALERT';
 
 export interface IContact {
-  readonly id: string;
-  readonly name: string;
-  readonly number: string;
+  id: string;
+  name: string;
+  number: string;
 }
 
 export interface IState {
   contacts: IContact[];
   filter: string;
   toggleOpen: boolean;
+  alert: boolean
 }
 
 // Action types
@@ -36,8 +38,14 @@ interface ToggleAction {
   payload: boolean;
 }
 
+interface AlertAction {
+  type: typeof ALERT;
+  payload: boolean;
+}
+
 export type ActionTypes =
   | AddContactAction
   | RemoveContactAction
   | FilterAction
   | ToggleAction
+  | AlertAction;
